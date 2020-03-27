@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
-import config from 'src/commons/config-hoc';
+import {toLogin} from "@/commons";
+import config from '@/commons/config-hoc';
 import './style.less';
 
 @config({
     router: true,
 })
-export default class Error404 extends Component {
+export default class Error401 extends Component {
     state = {
         time: 9,
     };
@@ -19,15 +19,13 @@ export default class Error404 extends Component {
         this.bodyOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
 
-        if (this.props.history.length >= 2) {
-            this.sI = setInterval(() => {
-                const time = this.state.time - 1;
+        this.sI = setInterval(() => {
+            const time = this.state.time - 1;
 
-                if (time === 0) this.handleGoBack();
+            if (time === 0) toLogin();
 
-                this.setState({time});
-            }, 1000);
-        }
+            this.setState({time});
+        }, 1000);
     }
 
     componentWillUnmount() {
@@ -39,14 +37,14 @@ export default class Error404 extends Component {
         const {history} = this.props;
         const {time} = this.state;
         return (
-            <div styleName="root error404">
+            <div styleName="root error401">
                 <div styleName="container">
                     <div styleName="header">
-                        <h3>页面不存在</h3>
+                        <h3>需要登录</h3>
                     </div>
                     <p styleName="intro">
-                        跳转到<Link to="/"> 首页 </Link>
-                        {history.length >= 2 ? <span>或者返回 <a onClick={this.handleGoBack}>上一步（{time}）</a></span> : null}
+                        跳转到<a onClick={toLogin}> 登录页面({time}) </a>
+                        {history.length >= 2 ? <span>或者返回 <a onClick={this.handleGoBack}>上一步</a></span> : null}
                     </p>
                 </div>
             </div>

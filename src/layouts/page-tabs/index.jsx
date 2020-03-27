@@ -7,7 +7,7 @@ import {
     VerticalLeftOutlined,
     VerticalRightOutlined,
 } from '@ant-design/icons';
-import {Icon as LegacyIcon} from '@ant-design/compatible';
+import {Icon} from 'src/library/components';
 import {Menu} from 'antd';
 import {DraggableTabsBar} from 'src/library/components';
 import config from 'src/commons/config-hoc';
@@ -132,7 +132,7 @@ export default class PageTabs extends Component {
 
             if (tabTitle?.icon) icon = tabTitle.icon;
 
-            if (icon) title = <div style={{flex: 1, textAlign: 'center'}}><LegacyIcon type={icon} style={{marginRight: 4}}/>{title}</div>;
+            if (icon) title = <div style={{flex: 1, textAlign: 'center'}}><Icon type={icon} style={{marginRight: 4}}/>{title}</div>;
 
             return {
                 key: path,

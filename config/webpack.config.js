@@ -26,6 +26,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
 const theme = require('../src/theme');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const ConfigGrabWebpackPlugin = require('./webpack-plugin/config-grab-webpack-plugin');
 const ModelGrabWebpackPlugin = require('./webpack-plugin/model-grab-webpack-plugin');
@@ -524,6 +525,7 @@ module.exports = function (webpackEnv) {
             ],
         },
         plugins: [
+            process.env.ANALYZ ? new BundleAnalyzerPlugin() : undefined,
             new ModelGrabWebpackPlugin({
                 paths: [
                     path.resolve(__dirname, '../src/models/**/*.js'),

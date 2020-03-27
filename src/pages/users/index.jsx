@@ -26,7 +26,6 @@ export default class UserCenter extends Component {
         pageNum: 1,         // 分页当前页
         pageSize: 20,       // 分页每页显示条数
         deleting: false,    // 批量删除中loading
-        singleDeleting: {}, // 操作列删除loading
         visible: false,     // 添加、修改弹框
         id: null,           // 需要修改的数据id
     };
@@ -40,8 +39,6 @@ export default class UserCenter extends Component {
             title: '操作', dataIndex: 'operator', width: 100,
             render: (value, record) => {
                 const {id, name} = record;
-                const {singleDeleting} = this.state;
-                const deleting = singleDeleting[id];
                 const items = [
                     {
                         label: '编辑',
@@ -50,7 +47,6 @@ export default class UserCenter extends Component {
                     {
                         label: '删除',
                         color: 'red',
-                        loading: deleting,
                         confirm: {
                             title: `您确定删除"${name}"?`,
                             onConfirm: () => this.handleDelete(id),
@@ -64,11 +60,13 @@ export default class UserCenter extends Component {
     ];
 
     componentDidMount() {
-        this.handleSearch();
+        this.form.submit();
     }
 
-    handleSearch = (values) => {
+    handleSubmit = (values) => {
         if (this.state.loading) return;
+
+        console.log(values);
 
         const {pageNum, pageSize} = this.state;
         const params = {
@@ -89,18 +87,12 @@ export default class UserCenter extends Component {
     };
 
     handleDelete = (id) => {
-        const singleDeleting = {...this.state.singleDeleting};
+        if (this.state.deleting) return;
 
-        if (singleDeleting[id]) return;
-
-        singleDeleting[id] = true;
-        this.setState({singleDeleting});
+        this.setState({deleting: true});
         this.props.ajax.del(`/mock/users/${id}`, null, {successTip: '删除成功！', errorTip: '删除失败！'})
-            .then(() => this.handleSearch())
-            .finally(() => {
-                singleDeleting[id] = false;
-                this.setState({singleDeleting});
-            });
+            .then(() => this.form.submit())
+            .finally(() => this.setState({deleting: false}));
     };
 
     handleBatchDelete = () => {
@@ -122,7 +114,7 @@ export default class UserCenter extends Component {
             onOk: () => {
                 this.setState({deleting: true});
                 this.props.ajax.del('/mock/users', {ids: selectedRowKeys}, {successTip: '删除成功！', errorTip: '删除失败！'})
-                    .then(() => this.handleSearch())
+                    .then(() => this.form.submit())
                     .finally(() => this.setState({deleting: false}));
             },
         });
@@ -148,7 +140,7 @@ export default class UserCenter extends Component {
         return (
             <PageContent>
                 <QueryBar collapsed={this.state.collapsed} onCollapsedChange={collapsed => this.setState({collapsed})}>
-                    <Form onFinish={this.handleSearch} ref={form => this.form = form}>
+                    <Form onFinish={this.handleSubmit} ref={form => this.form = form}>
                         <FormRow>
                             <FormElement
                                 {...formProps}
@@ -172,25 +164,10 @@ export default class UserCenter extends Component {
                         </FormRow>
                     </Form>
                 </QueryBar>
-
-                <ToolBar
-                    items={[
-                        {
-                            type: 'primary',
-                            icon: 'plus',
-                            text: '添加',
-                            onClick: () => this.setState({visible: true, id: null}),
-                        },
-                        {
-                            type: 'danger',
-                            icon: 'delete',
-                            text: '删除',
-                            loading: deleting,
-                            disabled: disabledDelete,
-                            onClick: this.handleBatchDelete,
-                        },
-                    ]}
-                />
+                <ToolBar>
+                    <Button type="primary" onClick={() => this.setState({visible: true, id: null})}>添加</Button>
+                    <Button danger loading={deleting} disabled={disabledDelete} onClick={this.handleBatchDelete}>删除</Button>
+                </ToolBar>
 
                 <Table
                     rowSelection={{
@@ -210,14 +187,14 @@ export default class UserCenter extends Component {
                     total={total}
                     pageNum={pageNum}
                     pageSize={pageSize}
-                    onPageNumChange={pageNum => this.setState({pageNum}, this.handleSearch)}
-                    onPageSizeChange={pageSize => this.setState({pageSize, pageNum: 1}, this.handleSearch)}
+                    onPageNumChange={pageNum => this.setState({pageNum}, this.form.submit)}
+                    onPageSizeChange={pageSize => this.setState({pageSize, pageNum: 1}, this.form.submit)}
                 />
                 <EditModal
                     visible={visible}
                     id={id}
                     isEdit={id !== null}
-                    onOk={() => this.setState({visible: false}, this.handleSearch)}
+                    onOk={() => this.setState({visible: false}, this.form.submit)}
                     onCancel={() => this.setState({visible: false})}
                 />
             </PageContent>

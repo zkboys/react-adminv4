@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {Icon} from 'src/library/components';
 import { Popconfirm, Dropdown, Menu, Tooltip } from 'antd';
 import './index.less';
 
@@ -58,7 +58,7 @@ export default class Operator extends Component {
         if (color) labelStyle.color = color;
 
         if (icon) {
-            label = <Tooltip placement="bottom" title={label}><LegacyIcon style={{fontSize: 16}} type={icon}/></Tooltip>;
+            label = <Tooltip placement="bottom" title={label}><Icon style={{fontSize: 16}} type={icon}/></Tooltip>;
         }
 
         return <a className={`operator-label ${disabled ? 'operator-label-disabled' : ''}`} style={labelStyle} ref={v => this.label[i] = v}>{label}</a>;
@@ -114,7 +114,7 @@ export default class Operator extends Component {
         const icon = status ? 'check-circle' : 'minus-circle-o';
         const color = status ? 'green' : 'red';
 
-        const defaultLabel = <LegacyIcon type={icon}/>;
+        const defaultLabel = <Icon type={icon}/>;
         let label = this.getLabel({...opt, label: defaultLabel, color}, i);
 
         // 如果没有权限，不允许进行操作，只做展示

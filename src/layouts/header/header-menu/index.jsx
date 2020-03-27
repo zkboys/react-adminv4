@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {Icon} from 'src/library/components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import {renderNode} from 'src/library/utils/tree-utils';
@@ -37,7 +37,7 @@ export default class HeaderMenu extends Component {
                 } = item;
 
                 let title = <span>{text}</span>;
-                if (icon) title = <span><LegacyIcon type={icon}/><HomeOutlined style={{display: 'none'}} /><span>{text}</span></span>;
+                if (icon) title = <span><Icon type={icon}/><HomeOutlined style={{display: 'none'}} /><span>{text}</span></span>;
 
                 if (children) {
                     return (

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {Icon} from 'src/library/components';
 import { Button } from 'antd';
 import './index.less';
 
@@ -38,7 +38,7 @@ export function ToolItem(props) {
                 {...others}
             >
                 {icon ? (
-                    <LegacyIcon type={icon}/>
+                    <Icon type={icon}/>
                 ) : null}
                 {text}
             </Button>

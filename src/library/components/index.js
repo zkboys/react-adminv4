@@ -14,3 +14,4 @@ export tableEditable from './table-editable';
 export tableRowDraggable from './table-row-draggable';
 export ToolBar, {ToolItem} from './tool-bar';
 export UserAvatar from './user-avatar';
+export Icon from './icon';

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
+import {Icon} from 'src/library/components';
 import { Breadcrumb } from 'antd';
 import Link from '../page-link';
 import './style.less';
@@ -25,7 +25,7 @@ export default class BreadcrumbComponent extends Component {
                     return (
                         <Item key={key}>
                             <Link to={path}>
-                                {icon ? <LegacyIcon type={icon} style={iconStyle}/> : null}
+                                {icon ? <Icon type={icon} style={iconStyle}/> : null}
                                 {text}
                             </Link>
                         </Item>
@@ -33,7 +33,7 @@ export default class BreadcrumbComponent extends Component {
                 }
                 return (
                     <Item key={key}>
-                        {icon ? <LegacyIcon type={icon} style={iconStyle}/> : null}
+                        {icon ? <Icon type={icon} style={iconStyle}/> : null}
                         {text}
                     </Item>
                 );

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { Form, Icon as LegacyIcon } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
+import {Icon} from 'src/library/components';
 import config from 'src/commons/config-hoc';
 import PageContent from 'src/layouts/page-content';
 import localMenus from '../../menus';
-import {convertToTree} from "src/library/utils/tree-utils";
+import {convertToTree} from 'src/library/utils/tree-utils';
 import {Table, ToolBar, Operator} from 'src/library/components';
 import EditModal from './EditModal';
 import './style.less';
@@ -14,7 +13,6 @@ import './style.less';
     title: {text: '菜单&权限', icon: 'lock'},
     ajax: true,
 })
-@Form.create()
 export default class index extends Component {
     state = {
         loading: false,
@@ -30,10 +28,10 @@ export default class index extends Component {
             render: (value, record) => {
                 const {icon} = record;
 
-                if (icon) return <span><LegacyIcon type={icon}/> {value}</span>;
+                if (icon) return <span><Icon type={icon}/> {value}</span>;
 
                 return value;
-            }
+            },
         },
         {title: 'path', dataIndex: 'path', key: 'path', width: 250},
         {title: 'url', dataIndex: 'url', key: 'url'},
@@ -45,18 +43,20 @@ export default class index extends Component {
                 if (value === '2') return '功能';
 
                 return '菜单';
-            }
+            },
         },
         {title: '功能编码', dataIndex: 'code', key: 'code', width: 100},
         {title: '排序', dataIndex: 'order', key: 'order', width: 60},
         {
             title: '操作', dataIndex: 'operator', key: 'operator', width: 150,
             render: (value, record) => {
+                // 要有type
+                const {type = '1'} = record;
                 const items = [
                     {
                         label: '编辑',
                         icon: 'form',
-                        onClick: () => this.setState({data: record, visible: true}),
+                        onClick: () => this.setState({data: {...record, type}, visible: true}),
                     },
                     {
                         label: '删除',
@@ -65,7 +65,7 @@ export default class index extends Component {
                         confirm: {
                             title: '您请确定要删除此节点及其子节点吗？',
                             onConfirm: () => this.handleDeleteNode(record),
-                        }
+                        },
                     },
                     {
                         label: '添加子菜单',
@@ -78,7 +78,7 @@ export default class index extends Component {
                         onClick: () => this.setState({data: {parentKey: record.key, type: '2'}, visible: true}),
                     },
                 ];
-                return <Operator items={items}/>
+                return <Operator items={items}/>;
             },
         },
     ];
