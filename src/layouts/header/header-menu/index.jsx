@@ -4,7 +4,7 @@ import { Icon as LegacyIcon } from '@ant-design/compatible';
 import { HomeOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import {renderNode} from 'src/library/utils/tree-utils';
-import Link from '../page-link';
+import Link from '../../page-link';
 import './style.less';
 
 const SubMenu = Menu.SubMenu;

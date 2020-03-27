@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
-import { HomeOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import {Icon as LegacyIcon} from '@ant-design/compatible';
+import {HomeOutlined} from '@ant-design/icons';
+import {Menu} from 'antd';
 import {renderNode} from 'src/library/utils/tree-utils';
-import Link from '../page-link';
+import Link from '../../page-link';
 import './style.less';
 
 const SubMenu = Menu.SubMenu;
@@ -48,7 +48,7 @@ export default class SideMenu extends Component {
 
                 let title = <span>{text}</span>;
 
-                if (icon) title = <span><LegacyIcon type={icon}/><HomeOutlined style={{display: 'none'}} /><span>{text}</span></span>;
+                if (icon) title = <span><LegacyIcon type={icon}/><HomeOutlined style={{display: 'none'}}/><span>{text}</span></span>;
 
                 if (children) {
                     return (
@@ -67,7 +67,7 @@ export default class SideMenu extends Component {
                         ) : (
                             <Link to={{
                                 pathname: path,
-                                state: {from: 'menu'}
+                                state: {from: 'menu'},
                             }}>
                                 {title}
                             </Link>

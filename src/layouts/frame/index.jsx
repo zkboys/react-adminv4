@@ -133,7 +133,7 @@ export default class FrameTopSideMenu extends Component {
                         icon: item.icon,
                         text: item.text,
                         path: item.path,
-                    }
+                    };
                 });
             }
 

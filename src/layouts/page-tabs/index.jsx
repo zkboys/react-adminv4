@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import {
     CloseCircleOutlined,
     CloseOutlined,
@@ -8,9 +7,8 @@ import {
     VerticalLeftOutlined,
     VerticalRightOutlined,
 } from '@ant-design/icons';
-
-import { Icon as LegacyIcon } from '@ant-design/compatible';
-import { Menu } from 'antd';
+import {Icon as LegacyIcon} from '@ant-design/compatible';
+import {Menu} from 'antd';
 import {DraggableTabsBar} from 'src/library/components';
 import config from 'src/commons/config-hoc';
 import {ContextMenu} from 'src/library/components';
@@ -82,28 +80,28 @@ export default class PageTabs extends Component {
                 {keepAlive ? (
                     [
                         <Menu.Item key="refresh">
-                            <SyncOutlined /> 刷新
+                            <SyncOutlined/> 刷新
                         </Menu.Item>,
                         <Menu.Item key="refreshAll">
-                            <SyncOutlined /> 刷新全部
+                            <SyncOutlined/> 刷新全部
                         </Menu.Item>,
-                        <Menu.Divider key="divider"/>
+                        <Menu.Divider key="divider"/>,
                     ]
                 ) : null}
                 <Menu.Item key="close" disabled={disabledClose}>
-                    <CloseOutlined /> 关闭
+                    <CloseOutlined/> 关闭
                 </Menu.Item>
                 <Menu.Item key="closeOthers" disabled={disabledClose}>
-                    <CloseCircleOutlined /> 关闭其他
+                    <CloseCircleOutlined/> 关闭其他
                 </Menu.Item>
                 <Menu.Item key="closeAll" disabled={disabledClose}>
-                    <CloseSquareOutlined /> 关闭所有
+                    <CloseSquareOutlined/> 关闭所有
                 </Menu.Item>
                 <Menu.Item key="closeLeft" disabled={disabledCloseLeft}>
-                    <VerticalLeftOutlined /> 关闭左侧
+                    <VerticalLeftOutlined/> 关闭左侧
                 </Menu.Item>
                 <Menu.Item key="closeRight" disabled={disabledCloseRight}>
-                    <VerticalRightOutlined /> 关闭右侧
+                    <VerticalRightOutlined/> 关闭右侧
                 </Menu.Item>
             </Menu>
         );
@@ -141,7 +139,7 @@ export default class PageTabs extends Component {
                 title,
                 closable: true,
                 ...item,
-            }
+            };
         });
 
         return (

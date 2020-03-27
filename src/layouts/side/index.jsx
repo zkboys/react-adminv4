@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getScrollBarWidth} from 'src/library/utils';
-import SideMenu from '../side-menu';
+import SideMenu from './side-menu';
 import {connect} from '../../models/index';
 import {PAGE_FRAME_LAYOUT} from 'src/models/settings';
 import DragBar from './DragBar';

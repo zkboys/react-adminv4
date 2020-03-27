@@ -3,10 +3,6 @@ import {Button} from 'antd';
 import config from 'src/commons/config-hoc';
 import PageContent from 'src/layouts/page-content';
 
-@config({
-    path: '/example/ajax',
-    ajax: true,
-})
 export default class Ajax extends Component {
     state = {
         loading: false,

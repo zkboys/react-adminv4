@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import {isLogin} from 'src/commons';
-import Error401 from 'src/pages/error/Error401';
+import {isLogin, toLogin} from 'src/commons';
 import config from 'src/commons/config-hoc';
 import {keepAliveRoutes} from './routes';
 
@@ -47,7 +46,14 @@ export default class KeepAuthRoute extends React.Component {
                     const keepAlive = configKeepAlive === void 0 ? keepAliveSystem : configKeepAlive;
                     const {history} = props;
                     const {action: {system}} = this.props;
-                    let component = (noAuth || isLogin()) ? <Component {...props}/> : <Error401 {...props}/>;
+
+                    let component = null;
+                    if ((noAuth || isLogin())) {
+                        component = <Component {...props}/>;
+                    } else {
+                        // 直接跳转登录，不显示401页面
+                        return toLogin();
+                    }
 
                     // 如果页面现实tabs，或者有页面启用了keepAlive 需要对tabs进行操作
                     if (tabsShow || keepAlive || keepAliveRoutes.length) {

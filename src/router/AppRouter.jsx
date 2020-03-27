@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {isLogin} from 'src/commons';
 import PageFrame from 'src/layouts/frame';
 import Error404 from 'src/pages/error/Error404';
