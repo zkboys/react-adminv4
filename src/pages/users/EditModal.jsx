@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Form} from 'antd';
-import {FormElement, FormRow} from 'src/library/components';
+import {FormElement} from 'src/library/components';
 import config from 'src/commons/config-hoc';
 import {ModalContent} from 'src/library/components';
 
@@ -40,7 +40,6 @@ export default class EditModal extends Component {
     handleSubmit = (values) => {
         if (this.state.loading) return;
 
-        console.log(values);
         const {isEdit} = this.props;
         const ajaxMethod = isEdit ? this.props.ajax.put : this.props.ajax.post;
         const successTip = isEdit ? '修改成功！' : '添加成功！';
@@ -58,10 +57,8 @@ export default class EditModal extends Component {
         const {isEdit} = this.props;
         const {loading, data} = this.state;
         const formProps = {
-            width: '50%',
             labelWidth: 100,
         };
-        console.log('render');
         return (
             <ModalContent
                 loading={loading}
@@ -77,22 +74,20 @@ export default class EditModal extends Component {
                 >
                     {isEdit ? <FormElement {...formProps} type="hidden" name="id"/> : null}
 
-                    <FormRow>
-                        <FormElement
-                            {...formProps}
-                            label="用户名"
-                            name="name"
-                            required
-                            noSpace
-                        />
-                        <FormElement
-                            {...formProps}
-                            type="number"
-                            label="年龄"
-                            name="age"
-                            required
-                        />
-                    </FormRow>
+                    <FormElement
+                        {...formProps}
+                        label="用户名"
+                        name="name"
+                        required
+                        noSpace
+                    />
+                    <FormElement
+                        {...formProps}
+                        type="number"
+                        label="年龄"
+                        name="age"
+                        required
+                    />
                     <FormElement
                         {...formProps}
                         type="select"

@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-
 import {
     CaretDownOutlined,
     EditOutlined,
-    LockOutlined,
     LogoutOutlined,
     SettingOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-
-import { Menu, Dropdown } from 'antd';
+import {Menu, Dropdown} from 'antd';
 import {Link} from 'react-router-dom';
 import {toLogin, getLoginUser} from 'src/commons';
 import ModifyPassword from './ModifyPassword';
@@ -46,22 +43,19 @@ export default class HeaderUser extends Component {
 
         const menu = (
             <Menu styleName="menu" theme={theme} selectedKeys={[]} onClick={this.handleMenuClick}>
-                <Item key="modifyPassword"><EditOutlined />修改密码</Item>
-                <Item><Link to="/settings"><SettingOutlined />设置</Link></Item>
-                {process.env.NODE_ENV === 'development' ? (
-                    <Item><Link to="/menu-permission"><LockOutlined />菜单</Link></Item>
-                ) : null}
+                <Item key="modifyPassword"><EditOutlined/>修改密码</Item>
+                <Item><Link to="/settings"><SettingOutlined/>设置</Link></Item>
                 <Menu.Divider/>
-                <Item key="logout"><LogoutOutlined />退出登录</Item>
+                <Item key="logout"><LogoutOutlined/>退出登录</Item>
             </Menu>
         );
         return (
             <div styleName="user-menu" ref={node => this.userMenu = node}>
                 <Dropdown overlay={menu} getPopupContainer={() => (this.userMenu || document.body)}>
                     <span styleName="account" className={className}>
-                        <UserOutlined />
+                        <UserOutlined/>
                         <span style={{fontSize: 14}}>{name}</span>
-                        <CaretDownOutlined />
+                        <CaretDownOutlined/>
                     </span>
                 </Dropdown>
 

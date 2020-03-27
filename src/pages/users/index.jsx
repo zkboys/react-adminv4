@@ -66,8 +66,6 @@ export default class UserCenter extends Component {
     handleSubmit = (values) => {
         if (this.state.loading) return;
 
-        console.log(values);
-
         const {pageNum, pageSize} = this.state;
         const params = {
             ...values,
@@ -139,7 +137,7 @@ export default class UserCenter extends Component {
         const disabledDelete = !selectedRowKeys?.length;
         return (
             <PageContent>
-                <QueryBar collapsed={this.state.collapsed} onCollapsedChange={collapsed => this.setState({collapsed})}>
+                <QueryBar>
                     <Form onFinish={this.handleSubmit} ref={form => this.form = form}>
                         <FormRow>
                             <FormElement
@@ -164,6 +162,7 @@ export default class UserCenter extends Component {
                         </FormRow>
                     </Form>
                 </QueryBar>
+
                 <ToolBar>
                     <Button type="primary" onClick={() => this.setState({visible: true, id: null})}>添加</Button>
                     <Button danger loading={deleting} disabled={disabledDelete} onClick={this.handleBatchDelete}>删除</Button>
@@ -190,6 +189,7 @@ export default class UserCenter extends Component {
                     onPageNumChange={pageNum => this.setState({pageNum}, this.form.submit)}
                     onPageSizeChange={pageSize => this.setState({pageSize, pageNum: 1}, this.form.submit)}
                 />
+
                 <EditModal
                     visible={visible}
                     id={id}

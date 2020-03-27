@@ -294,7 +294,7 @@ class FormElement extends Component {
             }
         }
 
-        if (!('allowClear' in others)) {
+        if (!('allowClear' in others) && isInputLikeElement(type)) {
             others.allowClear = true;
         }
 
