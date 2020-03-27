@@ -332,7 +332,7 @@ class FormElement extends Component {
         };
 
         if (layout) {
-            formLabel = '';
+            formLabel = formLabel || '';
             colon = false;
         } else {
             if (children && !shouldUpdate) {

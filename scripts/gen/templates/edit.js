@@ -12,9 +12,9 @@ module.exports = function (config) {
 
     return `import React, {Component} from 'react';
 import {Form, Button} from 'antd';
-import {FormElement, FormRow} from '@/library/components';
-import config from '@/commons/config-hoc';
-import PageContent from '@/layouts/page-content';
+import {FormElement, FormRow} from 'src/library/components';
+import config from 'src/commons/config-hoc';
+import PageContent from 'src/layouts/page-content';
 
 @config({
     title: props => props.match.params.id === ':id' ? '添加' : '修改',
@@ -99,7 +99,7 @@ export default class Edit extends Component {
                         />`).join('\n                        ')}
                     </FormRow>
                     <FormRow>
-                        <FormElement {...formProps} layout>
+                        <FormElement {...formProps} layout label=" ">
                             <Button type="primary" htmlType="submit">保存</Button>
                             <Button onClick={() => this.form.resetFields()}>重置</Button>
                         </FormElement>
