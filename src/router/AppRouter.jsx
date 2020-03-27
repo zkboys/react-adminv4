@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {isLogin} from 'src/commons';
 import PageFrame from 'src/layouts/frame';
-import Error404 from 'src/pages/error/Error404';
+import Error404 from 'src/components/error/Error404';
 import config from 'src/commons/config-hoc';
 import KeepAuthRoute from './KeepAuthRoute';
 import KeepPage from './KeepPage';

@@ -32,7 +32,7 @@ export default class ModalContent extends Component {
         loading: false,
         style: {},
         bodyStyle: {},
-        surplusSpace: true,
+        surplusSpace: false,
         okText: '确定',
         okHtmlType: '',
         resetText: '重置',

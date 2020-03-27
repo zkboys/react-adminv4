@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import config from 'src/commons/config-hoc';
 import PageContent from 'src/layouts/page-content';
+import './style.less';
 
 @config({
     path: '/',
@@ -12,7 +13,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <PageContent>
+            <PageContent styleName="root">
                 <h1>首页</h1>
             </PageContent>
         );
