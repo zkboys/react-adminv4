@@ -7,7 +7,7 @@ import {ModalContent} from 'src/library/components';
 @config({
     ajax: true,
     modal: {
-        title: props => props.isEdit ? '修改用户' : '添加用户',
+        title: props => props.isEdit ? '修改' : '添加',
     },
 })
 export default class EditModal extends Component {
@@ -30,7 +30,7 @@ export default class EditModal extends Component {
         const {id} = this.props;
 
         this.setState({loading: true});
-        this.props.ajax.get(`/mock/users/${id}`)
+        this.props.ajax.get(`/role/${id}`)
             .then(res => {
                 this.setState({data: res || {}});
             })
@@ -41,11 +41,12 @@ export default class EditModal extends Component {
         if (this.state.loading) return;
 
         const {isEdit} = this.props;
-        const ajaxMethod = isEdit ? this.props.ajax.put : this.props.ajax.post;
         const successTip = isEdit ? '修改成功！' : '添加成功！';
+        const ajaxMethod = isEdit ? this.props.ajax.put : this.props.ajax.post;
+        const ajaxUrl = isEdit ? '/role' : '/role';
 
         this.setState({loading: true});
-        ajaxMethod('/mock/users', values, {successTip})
+        ajaxMethod(ajaxUrl, values, {successTip})
             .then(() => {
                 const {onOk} = this.props;
                 onOk && onOk();
@@ -73,58 +74,19 @@ export default class EditModal extends Component {
                     initialValues={data}
                 >
                     {isEdit ? <FormElement {...formProps} type="hidden" name="id"/> : null}
-
                     <FormElement
                         {...formProps}
-                        label="用户名"
+                        label="角色名称"
                         name="name"
                         required
-                        noSpace
                     />
                     <FormElement
                         {...formProps}
-                        type="number"
-                        label="年龄"
-                        name="age"
-                        required
+                        label="描述"
+                        name="description"
                     />
-                    <FormElement
-                        {...formProps}
-                        type="select"
-                        label="工作"
-                        name="job"
-                        options={[
-                            {value: '1', label: '前端开发'},
-                            {value: '2', label: '后端开发'},
-                        ]}
-                    />
-                    <FormElement
-                        {...formProps}
-                        type="select"
-                        label="职位"
-                        name="position"
-                        options={[
-                            {value: '1', label: '员工'},
-                            {value: '2', label: 'CEO'},
-                        ]}
-                    />
-                    <FormElement
-                        {...formProps}
-                        type="select"
-                        mode="multiple"
-                        showSearch
-                        optionFilterProp='children'
-                        label="角色"
-                        name="role"
-                        options={[
-                            {value: '1', label: '员工'},
-                            {value: '2', label: 'CEO'},
-                        ]}
-                    />
-
                 </Form>
             </ModalContent>
         );
     }
 }
-

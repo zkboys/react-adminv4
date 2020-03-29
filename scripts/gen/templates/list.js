@@ -61,7 +61,7 @@ export default class UserCenter extends Component {
         ${table.selectable ? 'selectedRowKeys: [],// 表格中选中行keys' : DELETE_THIS_LINE}
         ${table.pagination ? 'total: 0,           // 分页中条数' : DELETE_THIS_LINE}
         ${table.pagination ? 'pageNum: 1,         // 分页当前页' : DELETE_THIS_LINE}
-        ${table.pagination ? 'pageSize: 10,       // 分页每页显示条数' : DELETE_THIS_LINE}
+        ${table.pagination ? 'pageSize: 20,       // 分页每页显示条数' : DELETE_THIS_LINE}
         ${(hasDelete || hasBatchDelete) ? 'deleting: false,    // 删除中loading' : DELETE_THIS_LINE}
         ${isModalEdit ? 'visible: false,     // 添加、修改弹框' : DELETE_THIS_LINE}
         ${isModalEdit ? 'id: null,           // 需要修改的数据id' : DELETE_THIS_LINE}

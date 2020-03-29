@@ -68,7 +68,12 @@ export default class KeepAuthRoute extends React.Component {
                         if (nextActiveTab) {
                             nextActiveTab.nextActive = false;
                             setTimeout(() => {
-                                history.push(nextActiveTab.path);
+                                const iframePagePrefix = '/iframe_page_/';
+                                let path = nextActiveTab.path;
+                                if (path.startsWith(iframePagePrefix)) {
+                                    path = `${iframePagePrefix}${window.encodeURIComponent(path.replace(iframePagePrefix, ''))}`;
+                                }
+                                history.push(path);
                             });
                             return keepAlive ? null : component;
                         }
