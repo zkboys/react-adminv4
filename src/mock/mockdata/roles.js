@@ -1,79 +1,13 @@
-export default [
-    {
-        id: '57c17eb55ffe30c01e82b0ed',
-        name: '11333',
-        description: '123123',
-        update_at: '2016-08-27T11:51:17.141Z',
-        create_at: '2016-08-27T11:51:17.141Z',
-        is_deleted: false,
-        permissions: ['system', 'system-004002', 'system-004001', 'system-002'],
-    }, {
-        id: '57c17e42ccf96eb264cbe837',
-        name: '123123',
-        description: '123123',
-        update_at: '2016-08-27T11:49:22.449Z',
-        create_at: '2016-08-27T11:49:22.449Z',
-        is_deleted: false,
-        permissions: [],
-    }, {
-        id: '57c17e18ccf96eb264cbe836',
-        name: '啊啊啊',
-        description: '啊啊啊',
-        update_at: '2016-08-27T11:48:40.282Z',
-        create_at: '2016-08-27T11:48:40.282Z',
-        is_deleted: false,
-        permissions: [],
-    }, {
-        id: '57c17d9eccf96eb264cbe835',
-        name: '111111',
-        description: '111是是是',
-        update_at: '2016-08-27T11:46:38.199Z',
-        create_at: '2016-08-27T11:46:38.199Z',
-        is_deleted: false,
-        permissions: [],
-    }, {
-        id: '57540e7b258a0d1805af3eea',
-        name: '人事',
-        update_at: '2016-06-05T11:35:23.788Z',
-        create_at: '2016-06-05T11:35:23.788Z',
-        is_deleted: false,
-        permissions: ['system', 'system-004001', 'system-004002', 'system-002', 'organization', 'organization-001', 'users-add', 'users-delete', 'users-update', 'users-search', 'organization-002', 'organization-add', 'organization-delete', 'organization-update', 'organization-003', 'role-add', 'role-update', 'role-delete'],
-        description: '11111',
-    }, {
-        id: '57540c78258a0d1805af3ee9',
-        name: '测试默认权限',
-        update_at: '2016-06-05T11:26:48.499Z',
-        create_at: '2016-06-05T11:26:48.499Z',
-        is_deleted: false,
-        permissions: ['system', 'system-004001', 'system-004002', 'system-002'],
-    }, {
-        id: '5753f4706df8f6094bf3fc54',
-        name: '管理员',
-        description: '管理员拥有所有的权限',
-        update_at: '2016-06-05T09:44:16.250Z',
-        create_at: '2016-06-05T09:44:16.250Z',
-        is_deleted: false,
-        permissions: ['users-add', 'users-delete', 'users-update', 'users-search', 'users-reset-pass', 'users-toggle-lock', 'organization-add', 'organization-delete', 'organization-update', 'organization-search', 'role-add', 'role-update', 'role-delete', 'role-search', 'system', 'system-004002', 'system-004001', 'system-002'],
-    }, {
-        id: '5753e37fdd221c35067e9ed2',
-        name: '测试权限添加',
-        update_at: '2016-06-05T08:31:59.215Z',
-        create_at: '2016-06-05T08:31:59.215Z',
-        is_deleted: false,
-        permissions: ['system', 'system-002'],
-        description: '测试一下添加权限是否可以使用',
-    }, {
-        id: '5752a16e8ce348f23da2c86d',
-        name: '一次性成功',
-        description: '就是这么的吊',
-        update_at: '2016-06-04T09:37:50.629Z',
-        create_at: '2016-06-04T09:37:50.629Z',
-        is_deleted: false,
-    }, {
-        id: '5752a1248ce348f23da2c86b',
-        name: '第一个添加的角色',
-        description: '测试第一次添加是否能成功\n测试第一次编辑',
-        update_at: '2016-06-04T09:36:36.898Z',
-        create_at: '2016-06-04T09:36:36.898Z',
-        is_deleted: false,
-    }];
+import Mock from 'mockjs';
+
+export function getRolesByPageSize(pageSize) {
+    const users = [];
+    for (let i = 0; i < pageSize; i++) {
+        users.push(Mock.mock({
+            id: Mock.Random.guid(),
+            name: Mock.Random.cname(),
+            description: Mock.Random.cparagraph(1),
+        }));
+    }
+    return users;
+}

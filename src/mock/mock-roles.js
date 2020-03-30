@@ -1,4 +1,4 @@
-import roles from './mockdata/roles';
+import {getRolesByPageSize} from './mockdata/roles';
 
 export default {
     'get /mock/role': (config) => {
@@ -14,7 +14,7 @@ export default {
                     pageNum,
                     pageSize,
                     total: 888,
-                    list: roles,
+                    list: getRolesByPageSize(pageSize),
                 }]);
             }, 1000);
         });
